@@ -64,6 +64,19 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 		return false, &ErrorReply{Code: -1, Message: "Invalid params"}
 	}
 
+	// Nicehash
+	isNicehash := 0
+	for i := 0; i <= 2; i++ {
+		if params[i][0:2] != "0x" {
+			log.Printf("handleSubmitRPC, params[%d] = %s, len = %d", i, params[i], len(params[i]))
+			params[i] = "0x" + params[i]
+			isNicehash++
+		}
+	}
+	if isNicehash != 3 {
+		isNicehash = 0
+	}
+
 	if !noncePattern.MatchString(params[0]) || !hashPattern.MatchString(params[1]) || !hashPattern.MatchString(params[2]) {
 		s.policy.ApplyMalformedPolicy(cs.ip)
 		log.Printf("Malformed PoW result from %s@%s %v", login, cs.ip, params)
@@ -72,7 +85,7 @@ func (s *ProxyServer) handleSubmitRPC(cs *Session, login, id string, params []st
 
 	go func(s *ProxyServer, cs *Session, login, id string, params []string) {
 		t := s.currentBlockTemplate()
-		exist, validShare := s.processShare(login, id, cs.ip, t, params)
+		exist, validShare := s.processShare(login, id, cs.ip, t, params, isNicehash != 0)
 		ok := s.policy.ApplySharePolicy(cs.ip, !exist && validShare)
 
 		if exist {
