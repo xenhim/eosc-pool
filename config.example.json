@@ -1,6 +1,6 @@
 {
 	"threads": 2,
-	"coin": "clo",
+	"coin": "eosc",
 	"name": "main",
 	"pplns": 9000,
 
@@ -70,11 +70,6 @@
 			"name": "main",
 			"url": "http://127.0.0.1:8545",
 			"timeout": "10s"
-		},
-		{
-			"name": "backup",
-			"url": "http://127.0.0.2:8545",
-			"timeout": "10s"
 		}
 	],
 
@@ -89,7 +84,7 @@
 		"enabled": false,
 		"poolFee": 1.0,
 		"poolFeeAddress": "",
-		"donate": true,
+		"donate": false,
 		"depth": 120,
 		"immatureDepth": 20,
 		"keepTxFees": false,

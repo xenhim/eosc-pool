@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'open-social-pool',
+    modulePrefix: 'open-eosc-pool',
     environment: environment,
     rootURL: '/',
     locationType: 'hash',
@@ -27,7 +27,7 @@ module.exports = function(environment) {
 
       // Fee and payout details
       PoolFee: '1%',
-      PayoutThreshold: '0.5 CLO',
+      PayoutThreshold: '0.5 EOSC',
 
       // For network hashrate (change for your favourite fork)
       BlockTime: 14.4

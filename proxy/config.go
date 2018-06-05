@@ -1,10 +1,10 @@
 package proxy
 
 import (
-	"github.com/chainkorea/open-callisto-pool/api"
-	"github.com/chainkorea/open-callisto-pool/payouts"
-	"github.com/chainkorea/open-callisto-pool/policy"
-	"github.com/chainkorea/open-callisto-pool/storage"
+	"github.com/eosclassic/open-eosc-pool/api"
+	"github.com/eosclassic/open-eosc-pool/payouts"
+	"github.com/eosclassic/open-eosc-pool/policy"
+	"github.com/eosclassic/open-eosc-pool/storage"
 )
 
 type Config struct {

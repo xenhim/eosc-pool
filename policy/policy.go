@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/chainkorea/open-callisto-pool/storage"
-	"github.com/chainkorea/open-callisto-pool/util"
+	"github.com/eosclassic/open-eosc-pool/storage"
+	"github.com/eosclassic/open-eosc-pool/util"
 )
 
 type Config struct {

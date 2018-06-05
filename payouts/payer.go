@@ -12,9 +12,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 
-	"github.com/chainkorea/open-callisto-pool/rpc"
-	"github.com/chainkorea/open-callisto-pool/storage"
-	"github.com/chainkorea/open-callisto-pool/util"
+	"github.com/eosclassic/open-eosc-pool/rpc"
+	"github.com/eosclassic/open-eosc-pool/storage"
+	"github.com/eosclassic/open-eosc-pool/util"
 )
 
 const txCheckInterval = 5 * time.Second
