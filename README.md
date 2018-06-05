@@ -1,6 +1,4 @@
-## Open Source Callisto (CLO) Mining Pool
-
-![Main page of open-callisto-pool](https://raw.githubusercontent.com/chainkorea/open-callisto-pool/master/misc/open-callisto-pool.PNG)
+## Open Source EOS Classic (EOSC) Mining Pool
 
 [![Build Status](https://travis-ci.org/chainkorea/open-callisto-pool.svg?branch=master)](https://travis-ci.org/chainkorea/open-callisto-pool)
 [![Go Report Card](https://goreportcard.com/badge/github.com/chainkorea/open-callisto-pool)](https://goreportcard.com/report/github.com/chainkorea/open-callisto-pool)
@@ -34,7 +32,7 @@ Dependencies:
   * redis-server >= 2.8.0
   * nodejs >= 4 LTS
   * nginx
-  * geth (multi-geth)
+  * geth
 
 **I highly recommend to use Ubuntu 16.04 LTS.**
 
@@ -62,41 +60,41 @@ This will install the latest nodejs
     $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
     $ sudo apt-get install -y nodejs
 
-### Install multi-geth
+### Install geth
 
-    $ wget https://github.com/ethereumsocial/multi-geth/releases/download/v1.8.10/multi-geth-linux-v1.8.10.zip
-    $ unzip multi-geth-linux-v1.8.10.zip
+    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.10/eosclassic-linux-v1.8.10.zip
+    $ unzip eosclassic-linux-v1.8.10.zip
     $ sudo mv geth /usr/local/bin/geth
 
-### Run multi-geth
+### Run geth
 
-If you use Ubuntu, it is easier to control services by using serviced.
+If you use Ubuntu, it is easier to control services by using systemctl.
 
-    $ sudo nano /etc/systemd/system/callisto.service
+    $ sudo nano /etc/systemd/system/eosclassic.service
 
 Copy the following example
 
 ```
 [Unit]
-Description=Callisto for Pool
+Description=EOS Classic for Pool
 After=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/geth --callisto --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:Callisto@clostats.net"
+ExecStart=/usr/local/bin/geth --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSCLassic@stats.eos-classic.io"
 User=<your-user-name>
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Then run multi-geth by the following commands
+Then run geth by the following commands
 
-    $ sudo systemctl enable callisto
-    $ sudo systemctl start callisto
+    $ sudo systemctl enable eosclassic
+    $ sudo systemctl start eosclassic
 
 If you want to debug the node command
 
-    $ sudo systemctl status callisto
+    $ sudo systemctl status eosclassic
 
 Run console
 
@@ -107,19 +105,19 @@ Register pool account and open wallet for transaction. This process is always re
     > personal.newAccount()
     > personal.unlockAccount(eth.accounts[0],"password",40000000)
 
-### Install Callisto Pool
+### Install EOS Classic Pool Software
 
-    $ git clone https://github.com/chainkorea/open-callisto-pool
-    $ cd open-callisto-pool
+    $ git clone https://github.com/eosclassic/open-eosc-pool
+    $ cd open-eosc-pool
     $ make all
 
-If you face open-callisto-pool after ls ~/open-callisto-pool/build/bin/, the installation has completed.
+If you face open-eosc-pool after ls ~/open-eosc-pool/build/bin/, the installation has completed.
 
-    $ ls ~/open-callisto-pool/build/bin/
+    $ ls ~/open-eosc-pool/build/bin/
 
-### Set up Callisto pool
+### Set up EOS Classic pool
 
-    $ mv config.example.json config.json
+    $ cp config.example.json config.json
     $ nano config.json
 
 Set up based on commands below.
@@ -129,7 +127,7 @@ Set up based on commands below.
   // The number of cores of CPU.
   "threads": 2,
   // Prefix for keys in redis store
-  "coin": "clo",
+  "coin": "eosc",
   // Give unique name to each instance
   "name": "main",
   // PPLNS rounds
@@ -309,7 +307,7 @@ Set up based on commands below.
     // Gas amount and price for payout tx (advanced users only)
     "gas": "21000",
     "gasPrice": "50000000000",
-    // The minimum distribution of mining reward. It is 1 CLO now.
+    // The minimum distribution of mining reward. It is 1 EOSC now.
     "threshold": 1000000000,
     // Perform BGSAVE on Redis after successful payouts session
     "bgsave": false
@@ -338,11 +336,12 @@ Copy the following example
 ```
 [Unit]
 Description=Etherpool
-After=callisto.target
+After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/home/<your-user-name>/open-callisto-pool/build/bin/open-callisto-pool /home/<your-user-name>/open-callisto-pool/config.json
+ExecStart=/home/<your-user-name>/open-eosc-pool/build/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config.json
+User=<your-user-name>
 
 [Install]
 WantedBy=multi-user.target
@@ -368,11 +367,11 @@ You can open firewall by opening 80,443,8080,8888,8008.
 
 ### Modify configuration file
 
-    $ nano ~/open-callisto-pool/www/config/environment.js
+    $ nano ~/open-eosc-pool/www/config/environment.js
 
 Make some modifications in these settings.
 
-    BrowserTitle: 'Callisto Mining Pool',
+    BrowserTitle: 'EOS Classic Mining Pool',
     ApiUrl: '//your-pool-domain/',
     HttpHost: 'http://your-pool-domain',
     StratumHost: 'your-pool-domain',
@@ -388,7 +387,7 @@ The frontend is a single-page Ember.js application that polls the pool API to re
     $ npm install
     $ bower install
     $ ./build.sh
-    $ cp -R ~/open-callisto-pool/www/dist ~/www
+    $ cp -R ~/open-eosc-pool/www/dist ~/www
 
 As you can see above, the frontend of the pool homepage is created. Then, move to the directory, www, which services the file.
 
