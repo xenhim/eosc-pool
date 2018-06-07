@@ -5,7 +5,7 @@
 
 ### Features  
 
-**This pool is being further developed to provide an easy to use pool for Callisto miners. Testing and bug submissions are welcome!**
+**This pool is being further developed to provide an easy to use pool for EOS Classic miners. Testing and bug submissions are welcome!**
 
 * Support for HTTP and Stratum mining
 * Detailed block stats with luck percentage and full reward
@@ -22,7 +22,7 @@
 * [Ether-Proxy](https://github.com/sammy007/ether-proxy) HTTP proxy with web interface
 * [Stratum Proxy](https://github.com/Atrides/eth-proxy) for Ethereum
 
-## Guide to make your very own Callisto mining pool
+## Guide to make your very own EOS Classic mining pool
 
 ### Building on Linux
 
@@ -268,7 +268,7 @@ Set up based on commands below.
 
   // This module periodically remits ether to miners
   "unlocker": {
-    "enabled": false,
+    "enabled": true,
     // Pool fee percentage
     "poolFee": 1.0,
     // the address is for pool fee. Personal wallet is recommended to prevent from server hacking.
@@ -293,9 +293,9 @@ Set up based on commands below.
   "payouts": {
     "enabled": true,
     // Require minimum number of peers on node
-    "requirePeers": 5,
+    "requirePeers": 2,
     // Run payouts in this interval
-    "interval": "12h",
+    "interval": "10m",
     // Geth instance node rpc endpoint for payouts processing
     "daemon": "http://127.0.0.1:8545",
     // Rise error if can't reach geth in this amount of time
@@ -405,8 +405,8 @@ Modify based on configuration file.
     }
 
     server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 80;
+        listen [::]:80;
         root /home/<your-user-name>/www;
 
         # Add index.php to the list if you are using PHP
