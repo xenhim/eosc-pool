@@ -1,7 +1,7 @@
 ## Open Source EOS Classic (EOSC) Mining Pool
 
-[![Build Status](https://travis-ci.org/chainkorea/open-callisto-pool.svg?branch=master)](https://travis-ci.org/chainkorea/open-callisto-pool)
-[![Go Report Card](https://goreportcard.com/badge/github.com/chainkorea/open-callisto-pool)](https://goreportcard.com/report/github.com/chainkorea/open-callisto-pool)
+[![Build Status](https://travis-ci.org/eosclassic/open-eosc-pool.svg?branch=master)](https://travis-ci.org/eosclassic/open-eosc-pool)
+[![Go Report Card](https://goreportcard.com/badge/github.com/eosclassic/open-eosc-pool)](https://goreportcard.com/report/github.com/eosclassic/open-eosc-pool)
 
 ### Features  
 
@@ -62,8 +62,8 @@ This will install the latest nodejs
 
 ### Install geth
 
-    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.10/eosclassic-linux-v1.8.10.zip
-    $ unzip eosclassic-linux-v1.8.10.zip
+    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.10/eosclassic-linux-v1.8.11.zip
+    $ unzip eosclassic-linux-v1.8.11.zip
     $ sudo mv geth /usr/local/bin/geth
 
 ### Run geth
@@ -474,7 +474,8 @@ Now you can access your pool's frontend via https! Share your pool link!
 ### Credits
 
 Made by sammy007. Licensed under GPLv3.
-Modified by Akira Takizawa & The Ellaism Project.
+
+Modified by Akira Takizawa & The Ellaism Project & EOS Classic.
 
 #### Contributors
 
