@@ -1,10 +1,10 @@
 package proxy
 
 import (
+	"errors"
 	"log"
 	"regexp"
 	"strings"
-	"errors"
 
 	"github.com/eosclassic/open-eosc-pool/rpc"
 	"github.com/eosclassic/open-eosc-pool/util"
