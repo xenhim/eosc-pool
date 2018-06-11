@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
                 },
                 tooltip: {
                     formatter: function() {
-                        return "<b>" + Highcharts.dateFormat('%Y-%m-%d', new Date(this.x)) + "<b><br>Payment&nbsp;<b>" + this.y.toFixed(4) + "&nbsp;CLO</b>";
+                        return "<b>" + Highcharts.dateFormat('%Y-%m-%d', new Date(this.x)) + "<b><br>Payment&nbsp;<b>" + this.y.toFixed(4) + "&nbsp;EOSC</b>";
                     },
                     useHTML: true
                 },
