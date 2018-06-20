@@ -62,8 +62,8 @@ This will install the latest nodejs
 
 ### Install geth
 
-    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.10/eosclassic-linux-v1.8.11.zip
-    $ unzip eosclassic-linux-v1.8.11.zip
+    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.13/eosclassic-linux-v1.8.13.zip
+    $ unzip eosclassic-linux-v1.8.13.zip
     $ sudo mv geth /usr/local/bin/geth
 
 ### Run geth
