@@ -36,37 +36,13 @@ Dependencies:
 
 **I highly recommend to use Ubuntu 16.04 LTS.**
 
-### Install go lang
+### Installing EOS Classic & EOS Classic Pool
 
-    $ sudo apt-get install -y build-essential golang-1.10-go unzip
-    $ sudo ln -s /usr/lib/go-1.10/bin/go /usr/local/bin/go
+Install required packages & EOS Classic Pool by the following command
 
-### Install redis-server
+    $ curl -sL https://raw.githubusercontent.com/eosclassic/open-eosc-pool/master/install.sh | sudo -E bash -
 
-    $ sudo apt-get install redis-server
-
-It is recommended to bind your DB address on 127.0.0.1 or on internal ip. Also, please set up the password for advanced security!!!
-
-### Install nginx
-
-    $ sudo apt-get install nginx
-
-Search on Google for nginx-setting
-
-### Install NODE
-
-This will install the latest nodejs
-
-    $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    $ sudo apt-get install -y nodejs
-
-### Install geth
-
-    $ wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.13/eosclassic-linux-v1.8.13.zip
-    $ unzip eosclassic-linux-v1.8.13.zip
-    $ sudo mv geth /usr/local/bin/geth
-
-### Run geth
+### Set up geth
 
 If you use Ubuntu, it is easier to control services by using systemctl.
 
@@ -104,16 +80,6 @@ Register pool account and open wallet for transaction. This process is always re
 
     > personal.newAccount()
     > personal.unlockAccount(eth.accounts[0],"password",40000000)
-
-### Install EOS Classic Pool Software
-
-    $ git clone https://github.com/eosclassic/open-eosc-pool
-    $ cd open-eosc-pool
-    $ make all
-
-If you face open-eosc-pool after ls ~/open-eosc-pool/build/bin/, the installation has completed.
-
-    $ ls ~/open-eosc-pool/build/bin/
 
 ### Set up EOS Classic pool
 
@@ -327,20 +293,21 @@ I recommend this deployment strategy:
 
 
 ### Run Pool
+
 It is required to run pool by serviced. If it is not, the terminal could be stopped, and pool doesn’t work.
 
-    $ sudo nano /etc/systemd/system/etherpool.service
+    $ sudo nano /etc/systemd/system/eoscpool.service
 
 Copy the following example
 
 ```
 [Unit]
-Description=Etherpool
+Description=EOS Classic Mining Pool
 After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/home/<your-user-name>/open-eosc-pool/build/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config.json
 User=<your-user-name>
 
 [Install]
