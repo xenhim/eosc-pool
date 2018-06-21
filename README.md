@@ -56,7 +56,7 @@ Description=EOS Classic for Pool
 After=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/geth --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSCLassic@stats.eos-classic.io"
+ExecStart=/usr/local/bin/geth --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSClassic@stats.eos-classic.io"
 User=<your-user-name>
 
 [Install]
