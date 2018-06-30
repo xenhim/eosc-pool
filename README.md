@@ -213,12 +213,12 @@ Set up based on commands below.
   "upstream": [
     {
       "name": "main",
-      "url": "http://127.0.0.1:8545",
+      "url": "http://127.0.0.1:8282",
       "timeout": "10s"
     },
     {
       "name": "backup",
-      "url": "http://127.0.0.2:8545",
+      "url": "http://127.0.0.2:8282",
       "timeout": "10s"
     }
   ],
@@ -250,7 +250,7 @@ Set up based on commands below.
     // Run unlocker in this interval
     "interval": "10m",
     // Geth instance node rpc endpoint for unlocking blocks
-    "daemon": "http://127.0.0.1:8545",
+    "daemon": "http://127.0.0.1:8282",
     // Rise error if can't reach geth in this amount of time
     "timeout": "10s"
   },
@@ -263,7 +263,7 @@ Set up based on commands below.
     // Run payouts in this interval
     "interval": "10m",
     // Geth instance node rpc endpoint for payouts processing
-    "daemon": "http://127.0.0.1:8545",
+    "daemon": "http://127.0.0.1:8282",
     // Rise error if can't reach geth in this amount of time
     "timeout": "10s",
     // Address with pool coinbase wallet address.
