@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Installing required packages"
 
@@ -17,10 +17,10 @@ node -v
 
 echo "Installing EOS Classic"
 
-wget https://github.com/eosclassic/go-eosclassic/releases/download/v1.8.13/eosclassic-linux-v1.8.13.zip
-unzip eosclassic-linux-v1.8.13.zip
-sudo mv geth /usr/local/bin/geth
-rm eosclassic-linux-v1.8.13.zip
+git clone -b stable https://github.com/eosclassic/go-eosclassic
+cd go-eosclassic
+make geth
+sudo cp build/bin/geth /usr/local/bin/geth
 
 echo "EOS Classic version"
 
