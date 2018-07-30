@@ -452,7 +452,7 @@ Modified by Akira Takizawa & The Ellaism Project & EOS Classic.
 
 Consider a donation for eos classic development fund!!
 
-Official EOS Classic Development Fund: 0x63fc6bf24415D69FD03B4eABa425A4fB3310ccc7
+Official EOS Classic Development Fund: [0x63fc6bf24415D69FD03B4eABa425A4fB3310ccc7](https://explorer.eos-classic.io/addr/0x63fc6bf24415d69fd03b4eaba425a4fb3310ccc7)
 
 ![](https://cdn.pbrd.co/images/GP5tI1D.png)
 
