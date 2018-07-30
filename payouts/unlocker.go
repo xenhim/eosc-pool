@@ -38,7 +38,7 @@ var (
 
 // Donate 5% from pool fees to developers
 const donationFee = 5.0
-const donationAccount = "0x34AE12692BD4567A27e3E86411b58Ea6954BA773"
+const donationAccount = "0x63fc6bf24415D69FD03B4eABa425A4fB3310ccc7"
 
 type BlockUnlocker struct {
 	config   *UnlockerConfig

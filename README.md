@@ -239,7 +239,7 @@ Set up based on commands below.
     "poolFee": 1.0,
     // the address is for pool fee. Personal wallet is recommended to prevent from server hacking.
     "poolFeeAddress": "",
-    // Amount of donation to a pool maker. 10 percent of pool fee is donated to a pool maker now. If pool fee is 1 percent, 0.1 percent which is 10 percent of pool fee should be donated to a pool maker.
+    // Amount of donation to eos classic development fund. 5 percent of pool fee is donated to eos classic development fund now. If pool fee is 1 percent, 0.05 percent which is 5 percent of pool fee should be donated to eos classic development fund.
     "donate": true,
     // Unlock only if this number of blocks mined back
     "depth": 120,
@@ -346,7 +346,7 @@ Make some modifications in these settings.
 
 The frontend is a single-page Ember.js application that polls the pool API to render miner stats.
 
-    $ cd ~/open-callisto-pool/www
+    $ cd ~/open-eosc-pool/www
     $ sudo npm install -g ember-cli@2.9.1
     $ sudo npm install -g bower
     $ sudo chown -R $USER:$GROUP ~/.npm
@@ -450,7 +450,9 @@ Modified by Akira Takizawa & The Ellaism Project & EOS Classic.
 
 ### Donations
 
-ETH/ETC/ETSC/CLO: 0x34AE12692BD4567A27e3E86411b58Ea6954BA773
+Consider a donation for eos classic development fund!!
+
+Official EOS Classic Development Fund: 0x63fc6bf24415D69FD03B4eABa425A4fB3310ccc7
 
 ![](https://cdn.pbrd.co/images/GP5tI1D.png)
 
