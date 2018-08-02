@@ -13,14 +13,14 @@ node -v
 
 echo "Upgrading EOS Classic"
 
-cd go-eosclassic
+cd eosclassic
 git pull
-make geth
-sudo cp build/bin/geth /usr/local/bin/geth
+make eosc
+sudo cp build/bin/eosc /usr/local/bin/eosc
 
 echo "EOS Classic version"
 
-geth version
+eosc version
 
 echo "Upgrading EOS Classic Pool Software"
 

@@ -68,7 +68,7 @@ Unset `RESOLVE_PAYOUT=1` or run payouts with `RESOLVE_PAYOUT=0`.
 
 ## Resolving Failed Payment (manual)
 
-You can perform manual maintenance using `geth` and `redis-cli` utilities.
+You can perform manual maintenance using `eosc` and `redis-cli` utilities.
 
 ### Check For Failed Transactions:
 

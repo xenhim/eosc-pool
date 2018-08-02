@@ -17,14 +17,14 @@ node -v
 
 echo "Installing EOS Classic"
 
-git clone -b stable https://github.com/eosclassic/go-eosclassic
-cd go-eosclassic
-make geth
-sudo cp build/bin/geth /usr/local/bin/geth
+git clone -b stable https://github.com/eosclassic/eosclassic
+cd eosclassic
+make eosc
+sudo cp build/bin/eosc /usr/local/bin/eosc
 
 echo "EOS Classic version"
 
-geth version
+eosc version
 
 echo "Installing EOS Classic Pool Software"
 

@@ -9,7 +9,7 @@
 
 * Support for HTTP and Stratum mining
 * Detailed block stats with luck percentage and full reward
-* Failover geth instances: geth high availability built in
+* Failover eosc instances: eosc high availability built in
 * Modern beautiful Ember.js frontend
 * Separate stats for workers: can highlight timed-out workers so miners can perform maintenance of rigs
 * JSON-API for stats
@@ -32,7 +32,7 @@ Dependencies:
   * redis-server >= 2.8.0
   * nodejs >= 4 LTS
   * nginx
-  * geth
+  * eosc
 
 **I highly recommend to use Ubuntu 16.04 LTS.**
 
@@ -42,7 +42,7 @@ Install required packages & EOS Classic Pool by the following command
 
     $ curl -sL https://raw.githubusercontent.com/eosclassic/open-eosc-pool/master/install.sh | sudo -E bash -
 
-### Set up geth
+### Set up eosc
 
 If you use Ubuntu, it is easier to control services by using systemctl.
 
@@ -56,14 +56,14 @@ Description=EOS Classic for Pool
 After=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/geth --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSClassic@stats.eos-classic.io"
+ExecStart=/usr/local/bin/eosc --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSClassic@stats.eos-classic.io"
 User=<your-user-name>
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Then run geth by the following commands
+Then run eosc by the following commands
 
     $ sudo systemctl enable eosclassic
     $ sudo systemctl start eosclassic
@@ -74,7 +74,7 @@ If you want to debug the node command
 
 Run console
 
-    $ geth attach
+    $ eosc attach
 
 Register pool account and open wallet for transaction. This process is always required, when the wallet node is restarted.
 
@@ -124,7 +124,7 @@ Set up based on commands below.
       "maxConn": 8192
     },
 
-    // Try to get new job from geth in this interval
+    // Try to get new job from eosc in this interval
     "blockRefreshInterval": "120ms",
     "stateUpdateInterval": "3s",
     // If there are many rejects because of heavy hash, difficulty should be increased properly.
@@ -203,10 +203,10 @@ Set up based on commands below.
     "purgeOnly": false
   },
 
-  // Check health of each geth node in this interval
+  // Check health of each eosc node in this interval
   "upstreamCheckInterval": "5s",
 
-  /* List of geth nodes to poll for new jobs. Pool will try to get work from
+  /* List of eosc nodes to poll for new jobs. Pool will try to get work from
     first alive one and check in background for failed to back up.
     Current block template of the pool is always cached in RAM indeed.
   */
@@ -249,9 +249,9 @@ Set up based on commands below.
     "keepTxFees": false,
     // Run unlocker in this interval
     "interval": "10m",
-    // Geth instance node rpc endpoint for unlocking blocks
+    // EOSC instance node rpc endpoint for unlocking blocks
     "daemon": "http://127.0.0.1:8282",
-    // Rise error if can't reach geth in this amount of time
+    // Rise error if can't reach eosc in this amount of time
     "timeout": "10s"
   },
 
@@ -262,13 +262,13 @@ Set up based on commands below.
     "requirePeers": 2,
     // Run payouts in this interval
     "interval": "10m",
-    // Geth instance node rpc endpoint for payouts processing
+    // EOSC instance node rpc endpoint for payouts processing
     "daemon": "http://127.0.0.1:8282",
-    // Rise error if can't reach geth in this amount of time
+    // Rise error if can't reach eosc in this amount of time
     "timeout": "10s",
     // Address with pool coinbase wallet address.
     "address": "0x0",
-    // Let geth to determine gas and gasPrice
+    // Let eosc to determine gas and gasPrice
     "autoGas": true,
     // Gas amount and price for payout tx (advanced users only)
     "gas": "21000",
