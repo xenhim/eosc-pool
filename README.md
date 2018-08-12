@@ -83,10 +83,10 @@ Register pool account and open wallet for transaction. This process is always re
 
 ### Set up EOS Classic pool
 
-    $ cp stratum.example.json stratum.json
-    $ cp unlocker.example.json unlocker.json
-    $ cp payout.example.json payout.json
-    $ cp api.example.json api.json
+    $ cp config/stratum.example.json config/stratum.json
+    $ cp config/unlocker.example.json config/unlocker.json
+    $ cp config/payout.example.json config/payout.json
+    $ cp config/api.example.json config/api.json
 
 Set up based on commands below.
 
@@ -321,7 +321,7 @@ After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/stratum.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config/stratum.json
 User=<your-user-name>
 
 [Install]
@@ -339,7 +339,7 @@ After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/unlocker.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config/unlocker.json
 User=<your-user-name>
 
 [Install]
@@ -352,12 +352,12 @@ WantedBy=multi-user.target
 
 ```
 [Unit]
-Description=EOS Classic Mining Pool
+Description=EOS Classic Mining Pool - Payout
 After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/payout.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config/payout.json
 User=<your-user-name>
 
 [Install]
@@ -370,12 +370,12 @@ WantedBy=multi-user.target
 
 ```
 [Unit]
-Description=EOS Classic Mining Pool
+Description=EOS Classic Mining Pool - API
 After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/api.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config/api.json
 User=<your-user-name>
 
 [Install]
