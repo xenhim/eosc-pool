@@ -1,9 +1,9 @@
 .DS_Store
-stratum.json
-nicehash.json
-unlocker.json
-payout.json
-api.json
+config/stratum.json
+config/nicehash.json
+config/unlocker.json
+config/payout.json
+config/api.json
 testnet.json
 
 /build/_workspace/
