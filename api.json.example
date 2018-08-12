@@ -1,0 +1,30 @@
+{
+	"threads": 2,
+	"coin": "eosc",
+	"name": "api",
+	"pplns": 9000,
+
+	"redis": {
+		"endpoint": "127.0.0.1:6379",
+		"poolSize": 10,
+		"database": 0,
+		"password": ""
+	},
+
+	"api": {
+		"enabled": true,
+		"purgeOnly": false,
+		"purgeInterval": "10m",
+		"listen": "0.0.0.0:8080",
+		"statsCollectInterval": "5s",
+		"hashrateWindow": "30m",
+		"hashrateLargeWindow": "3h",
+		"luckWindow": [64, 128, 256],
+		"payments": 30,
+		"blocks": 50,
+		"poolCharts":"0 */20 * * * *",
+		"poolChartsNum":74,
+		"minerCharts":"0 */20 * * * *",
+		"minerChartsNum":74
+	}
+}

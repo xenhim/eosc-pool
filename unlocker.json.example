@@ -1,0 +1,35 @@
+{
+	"threads": 2,
+	"coin": "eosc",
+	"name": "unlock",
+	"pplns": 9000,
+
+	"upstreamCheckInterval": "5s",
+	"upstream": [
+		{
+			"name": "main",
+			"url": "http://127.0.0.1:8282",
+			"timeout": "10s"
+		}
+	],
+
+	"redis": {
+		"endpoint": "127.0.0.1:6379",
+		"poolSize": 10,
+		"database": 0,
+		"password": ""
+	},
+
+	"unlocker": {
+		"enabled": true,
+		"poolFee": 1.0,
+		"poolFeeAddress": "",
+		"donate": true,
+		"depth": 120,
+		"immatureDepth": 20,
+		"keepTxFees": false,
+		"interval": "10m",
+		"daemon": "http://127.0.0.1:8282",
+		"timeout": "10s"
+	}
+}

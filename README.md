@@ -83,8 +83,10 @@ Register pool account and open wallet for transaction. This process is always re
 
 ### Set up EOS Classic pool
 
-    $ cp config.example.json config.json
-    $ nano config.json
+    $ cp stratum.example.json stratum.json
+    $ cp unlocker.example.json unlocker.json
+    $ cp payout.example.json payout.json
+    $ cp api.example.json api.json
 
 Set up based on commands below.
 
@@ -120,6 +122,15 @@ Set up based on commands below.
       "enabled": true,
       // Bind stratum mining socket to this IP:PORT
       "listen": "0.0.0.0:8008",
+      "timeout": "120s",
+      "maxConn": 8192
+    },
+
+    // Nicehash mining endpoint
+    "nicehash": {
+      "enabled": false,
+      // Bind stratum mining socket to this IP:PORT
+      "listen": "0.0.0.0:8088",
       "timeout": "120s",
       "maxConn": 8192
     },
@@ -283,22 +294,61 @@ Set up based on commands below.
 ```
 
 If you are distributing your pool deployment to several servers or processes,
-create several configs and disable unneeded modules on each server. (Advanced users)
+create several configs and disable unneeded modules on each server.
 
 I recommend this deployment strategy:
 
-* Mining instance - 1x (it depends, you can run one node for EU, one for US, one for Asia)
-* Unlocker and payouts instance - 1x each (strict!)
-* API instance - 1x
+* Stratum Mining Process (You can only enable stratum.json if you are solo mining and you don't need payouts)
+* Nicehash Mining Process (Enable nicehash with nicehash.json, you should not enable nicehash proxy with default stratum proxy at a same time, seperate them!!)
+* Unlocker and payouts Process - 1x each (strict!)
+* API Process - 1x for website
 
 
 ### Run Pool
 
 It is required to run pool by serviced. If it is not, the terminal could be stopped, and pool doesn’t work.
 
-    $ sudo nano /etc/systemd/system/eoscpool.service
-
 Copy the following example
+
+**Main Stratum Proxy for mining**
+
+    $ sudo nano /etc/systemd/system/eoscpool-main.service
+
+```
+[Unit]
+Description=EOS Classic Mining Pool - Stratum
+After=eosclassic.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/stratum.json
+User=<your-user-name>
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Unlocker for eosc node**
+
+    $ sudo nano /etc/systemd/system/eoscpool-unlocker.service
+
+```
+[Unit]
+Description=EOS Classic Mining Pool - Unlocker
+After=eosclassic.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/unlocker.json
+User=<your-user-name>
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Payout module for miners**
+
+    $ sudo nano /etc/systemd/system/eoscpool-payout.service
 
 ```
 [Unit]
@@ -307,7 +357,25 @@ After=eosclassic.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/config.json
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/payout.json
+User=<your-user-name>
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**API for Website**
+
+    $ sudo nano /etc/systemd/system/eoscpool-api.service
+
+```
+[Unit]
+Description=EOS Classic Mining Pool
+After=eosclassic.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/open-eosc-pool /home/<your-user-name>/open-eosc-pool/api.json
 User=<your-user-name>
 
 [Install]
@@ -316,12 +384,14 @@ WantedBy=multi-user.target
 
 Then run pool by the following commands
 
-    $ sudo systemctl enable etherpool
-    $ sudo systemctl start etherpool
+    $ sudo systemctl start eoscpool-main
+    $ sudo systemctl start eoscpool-unlocker
+    $ sudo systemctl start eoscpool-payout
+    $ sudo systemctl start eoscpool-api
 
 If you want to debug the node command
 
-    $ sudo systemctl status etherpool
+    $ sudo systemctl status eoscpool-main
 
 Backend operation has completed so far.
 
@@ -360,12 +430,9 @@ As you can see above, the frontend of the pool homepage is created. Then, move t
 
 Set up nginx.
 
-    $ sudo nano /etc/nginx/sites-available/default
+    $ sudo nano /etc/nginx/sites-available/site01
 
 Modify based on configuration file.
-
-    # Default server configuration
-    # nginx example
 
     upstream api {
         server 127.0.0.1:8080;
@@ -395,6 +462,8 @@ Modify based on configuration file.
 
 After setting nginx is completed, run the command below.
 
+    $ sudo rm /etc/nginx/sites-enabled/default
+    $ sudo ln -s /etc/nginx/sites-available/site01 /etc/nginx/sites-enabled/site01
     $ sudo service nginx restart
 
 Type your homepage address or IP address on the web.
