@@ -4,6 +4,14 @@ import config from '../config/environment';
 export default Ember.Route.extend({
   intl: Ember.inject.service(),
 
+  actions: {
+    lookup(login) {
+      if (!Ember.isEmpty(login)) {
+        return this.transitionTo('account', login);
+      }
+    }
+  },
+
   beforeModel() {
     this.get('intl').setLocale('en-us');
   },

@@ -46,6 +46,17 @@
           {{/link-to}}
         {{/active-li}}
       </ul>
+
+      <form class="navbar-form navbar-right">
+      <div class="input-group">
+        {{input value=cachedLogin class="form-control" placeholder="Miner Address"}}
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" {{action 'lookup' cachedLogin}}>
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
     </div>
   </div>
 </div>
