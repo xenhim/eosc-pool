@@ -16,13 +16,31 @@
 * PPLNS block reward
 * Multi-tx payout at once
 * Beautiful front-end highcharts embedded
+* Native Nicehash Stratum proxy support
 
-#### Proxies
+#### Recommended miners for EOS Classic
 
-* [Ether-Proxy](https://github.com/sammy007/ether-proxy) HTTP proxy with web interface
-* [Stratum Proxy](https://github.com/Atrides/eth-proxy) for Ethereum
+* [Claymore's Dual Ethereum Miner](https://bitcointalk.org/index.php?topic=1433925.0) Stratum miner with dual algorithm mining support (2% dev fee)
+* [Ethminer](https://github.com/ethereum-mining/ethminer/releases) Stratum miner with no dev fee & open-source
+* [Nicehash](https://www.nicehash.com/?refby=359826) Rent a hash here if you don't have a miner
 
 ## Guide to make your very own EOS Classic mining pool
+
+### Setting up a server for mining pool
+
+It is recommended to setup a clean vps server for mining pool rather than building a mining pool on your laptop or desktop environment (for security and better performance)
+
+Create an instance on AWS or Azure if you don't have one.
+
+Following hardware spec is recommended for single pool server with full features enabled.
+
+  * cpu > 2 core
+  * ram > 4 gb
+  * storage > 30 gb ( for redis & node )
+  * bandwith > 10mb
+  * os = linux (ubuntu or centos)
+
+This will cost about 40$ per month
 
 ### Building on Linux
 
@@ -30,7 +48,7 @@ Dependencies:
 
   * go >= 1.10
   * redis-server >= 2.8.0
-  * nodejs >= 4 LTS
+  * nodejs >= 8 LTS
   * nginx
   * eosc
 
@@ -41,6 +59,12 @@ Dependencies:
 Install required packages & EOS Classic Pool by the following command
 
     $ curl -sL https://raw.githubusercontent.com/eosclassic/open-eosc-pool/master/install.sh | sudo -E bash -
+
+### Upgrading EOS Classic & EOS Classic Pool
+
+Upgrade required packages & EOS Classic Pool by the following command
+
+    $ curl -sL https://raw.githubusercontent.com/eosclassic/open-eosc-pool/master/upgrade.sh | sudo -E bash -    
 
 ### Set up eosc
 
@@ -56,7 +80,7 @@ Description=EOS Classic for Pool
 After=network-online.target
 
 [Service]
-ExecStart=/usr/local/bin/eosc --cache=1024 --rpc --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSClassic@stats.eos-classic.io"
+ExecStart=/usr/local/bin/eosc --cache=1024 --rpc --mine --extradata "Mined by <your-pool-domain>" --ethstats "<your-pool-domain>:EOSClassic@stats.eos-classic.io"
 User=<your-user-name>
 
 [Install]
