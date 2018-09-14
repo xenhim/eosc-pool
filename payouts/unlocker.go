@@ -10,9 +10,9 @@ import (
 
 	"github.com/ethereumproject/go-ethereum/common"
 
-	"github.com/LeChuckDE/open-ethereumclassic-pool/rpc"
-	"github.com/LeChuckDE/open-ethereumclassic-pool/storage"
-	"github.com/LeChuckDE/open-ethereumclassic-pool/util"
+	"github.com/eosclassic/open-eosc-poolrpc"
+	"github.com/eosclassic/open-eosc-pool/storage"
+	"github.com/eosclassic/open-eosc-pool/util"
 	"errors"
 )
 
