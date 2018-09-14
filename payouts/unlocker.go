@@ -302,7 +302,7 @@ func (u *BlockUnlocker) unlockPendingBlocks() {
 		return
 	}
 
-	current, err := u.rpc.GetPendingBlock()
+	current, err := u.rpc.GetLatestBlock()
 	if err != nil {
 		u.halt = true
 		u.lastFail = err
@@ -400,7 +400,7 @@ func (u *BlockUnlocker) unlockAndCreditMiners() {
 		return
 	}
 
-	current, err := u.rpc.GetPendingBlock()
+	current, err := u.rpc.GetLatestBlock()
 	if err != nil {
 		u.halt = true
 		u.lastFail = err
