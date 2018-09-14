@@ -10,7 +10,7 @@ import (
 
 	"github.com/ethereumproject/go-ethereum/common"
 
-	"github.com/eosclassic/open-eosc-poolrpc"
+	"github.com/eosclassic/open-eosc-pool/rpc"
 	"github.com/eosclassic/open-eosc-pool/storage"
 	"github.com/eosclassic/open-eosc-pool/util"
 	"errors"
