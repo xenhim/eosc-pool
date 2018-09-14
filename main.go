@@ -1,5 +1,3 @@
-// +build go1.9
-
 package main
 
 import (
@@ -13,10 +11,10 @@ import (
 
 	"github.com/yvasiyarov/gorelic"
 
-	"github.com/eosclassic/open-eosc-pool/api"
-	"github.com/eosclassic/open-eosc-pool/payouts"
-	"github.com/eosclassic/open-eosc-pool/proxy"
-	"github.com/eosclassic/open-eosc-pool/storage"
+	"github.com/LeChuckDE/open-ethereumclassic-pool/api"
+	"github.com/LeChuckDE/open-ethereumclassic-pool/payouts"
+	"github.com/LeChuckDE/open-ethereumclassic-pool/proxy"
+	"github.com/LeChuckDE/open-ethereumclassic-pool/storage"
 )
 
 var cfg proxy.Config
@@ -82,7 +80,7 @@ func main() {
 
 	startNewrelic()
 
-	backend = storage.NewRedisClient(&cfg.Redis, cfg.Coin, cfg.Pplns)
+	backend = storage.NewRedisClient(&cfg.Redis, cfg.Coin)
 	pong, err := backend.Check()
 	if err != nil {
 		log.Printf("Can't establish connection to backend: %v", err)
